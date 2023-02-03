@@ -1,0 +1,30 @@
+@import "../../sass-stylesheets/variables"
+
+.input
+  border: none
+  outline: none
+  padding: 1.2rem 1.2rem
+  font-size: 1.6rem
+  &__wrapper
+    position: relative
+  &::placeholder
+    color: $color-black
+
+.background
+  &_gray
+    background: $color-gray
+    border-radius: 2rem 0 0 2rem
+    color: $color-black
+    box-shadow: 0 .4rem .4rem rgb(0 0 0 / 5%)
+  &_none
+    background: none
+    color: $color-blue-dark
+
+.error
+  background: rgba(crimson, .5)
+  &__message
+    position: absolute
+    bottom: -20px
+    left: 0
+    color: darkred
+
