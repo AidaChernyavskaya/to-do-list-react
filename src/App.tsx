@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Ptag} from "./components";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <p>
           Проверочка
         </p>
+        <Ptag size={"b"} color={"blue"}>Hello</Ptag>
         <a
           className="App-link"
           href="https://reactjs.org"
