@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["Ptag.module.sass","../../sass-stylesheets/_variables.sass"],"names":[],"mappings":"AAEA;EACE;EACA;;;AAEF;EACE;EACA;;;AAEF;EACE;EACA;;;AAEF;EACE;EACA;;;AAEF;EACE,OCjBgB;;;ADmBlB;EACE,OCfgB;;;ADiBlB;EACE,OCrBY","file":"Ptag.module.css"}
+{"version":3,"sourceRoot":"","sources":["Ptag.module.sass","../../sass-stylesheets/_variables.sass"],"names":[],"mappings":"AAEA;EACE;EACA;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE;;;AAEF;EACE,OCdgB;;;ADgBlB;EACE,OCZgB;;;ADclB;EACE,OClBY","file":"Ptag.module.css"}
