@@ -1,0 +1,28 @@
+@charset "UTF-8";
+.checkbox {
+  display: none;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.checkmark:after {
+  content: "";
+  cursor: pointer;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  background: #bae8ff;
+  text-align: center;
+}
+
+input[type=checkbox]:checked + .checkmark:after {
+  background: #25497b;
+  content: "  ✔";
+  color: white;
+  font-size: 1.4rem;
+}
+
+/*# sourceMappingURL=Checkbox.module.css.map */
