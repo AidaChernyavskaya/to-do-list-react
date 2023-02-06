@@ -17,6 +17,11 @@ function App() {
             background={false}
             placeholder={"HERE IS task written"}
           />
+          <Input
+              background={false}
+              placeholder={"task"}
+              checked={true}
+          />
 
           <Button icon={"plus"} appearance={'gray'}/>
           <Button icon={"del"} appearance={'ghost'}/>

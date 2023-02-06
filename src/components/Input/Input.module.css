@@ -32,4 +32,9 @@
   color: darkred;
 }
 
+.checked {
+  opacity: 0.5;
+  text-decoration-line: line-through;
+}
+
 /*# sourceMappingURL=Input.module.css.map */
