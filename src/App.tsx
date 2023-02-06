@@ -1,7 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Input, Ptag} from "./components";
+import {Button, Input, Ptag} from "./components";
 
 function App() {
   return (
@@ -18,6 +17,14 @@ function App() {
             background={false}
             placeholder={"HERE IS task written"}
         />
+
+        <Button icon={"plus"} appearance={'gray'}/>
+        <Button icon={"del"} appearance={'ghost'}/>
+        <Button icon={"arrowLeft"} appearance={'ghost'}/>
+        <Button icon={"arrowRight"} appearance={'ghost'}/>
+        <Button icon={"drag"} appearance={'ghost'}/>
+        <Button icon={"edit"} appearance={'ghost'}/>
+        <Button icon={"close"} appearance={'ghost'}/>
     </div>
   );
 }
