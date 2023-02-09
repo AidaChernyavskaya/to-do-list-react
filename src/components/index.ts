@@ -5,3 +5,4 @@ export * from "./Checkbox/Checkbox";
 export * from "./DateContainer/DateContainer";
 export * from "./Task/Task";
 export * from "./Add/Add";
+export * from "./Calendar/Calendar";

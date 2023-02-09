@@ -1,0 +1,11 @@
+.calendar {
+  display: flex;
+  justify-content: space-between;
+}
+.calendar__container {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr 2.4rem;
+  gap: 0.5rem;
+}
+
+/*# sourceMappingURL=Calendar.module.css.map */
