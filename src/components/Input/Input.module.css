@@ -1,7 +1,6 @@
 .input {
   border: none;
   outline: none;
-  padding: 1.2rem 1.2rem;
   font-size: 1.6rem;
 }
 .input__wrapper {
@@ -16,10 +15,12 @@
   border-radius: 2rem 0 0 2rem;
   color: black;
   box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.05);
+  padding: 1.2rem 1.2rem;
 }
 .background_none {
   background: none;
   color: #25497b;
+  padding: 0.6rem 0.6rem;
 }
 
 .error {
