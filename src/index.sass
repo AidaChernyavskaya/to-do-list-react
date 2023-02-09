@@ -1,3 +1,5 @@
+@import "./sass-stylesheets/variables"
+
 body
   margin: 0
   padding: 0
@@ -5,6 +7,12 @@ body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   box-sizing: border-box
+  background: $color-gray-light
+  display: grid
+  grid-template-columns: 1fr auto 1fr
 
 html
   font-size: 62.5%
+
+#root
+  grid-column: 2 / 3

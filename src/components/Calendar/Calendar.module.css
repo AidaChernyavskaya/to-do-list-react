@@ -2,6 +2,9 @@
   display: flex;
   justify-content: space-between;
 }
+.calendar > :not(:last-child) {
+  margin-right: 1rem;
+}
 .calendar__container {
   display: grid;
   grid-template-columns: 2.4rem 1fr 2.4rem;

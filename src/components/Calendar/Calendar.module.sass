@@ -3,6 +3,8 @@
 .calendar
   display: flex
   justify-content: space-between
+  &>:not(:last-child)
+    margin-right: 1rem
   &__container
     display: grid
     grid-template-columns: 2.4rem 1fr 2.4rem
