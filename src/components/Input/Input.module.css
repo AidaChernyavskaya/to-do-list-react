@@ -1,10 +1,13 @@
 .input {
   border: none;
   outline: none;
+  width: 100%;
   font-size: 1.6rem;
 }
 .input__wrapper {
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 .input::placeholder {
   color: black;
@@ -15,7 +18,7 @@
   border-radius: 2rem 0 0 2rem;
   color: black;
   box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.05);
-  padding: 1.2rem 1.2rem;
+  padding: 1.2rem 0 1.2rem 1.2rem;
 }
 .background_none {
   background: none;

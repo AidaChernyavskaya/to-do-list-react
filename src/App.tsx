@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Button, Checkbox, Input, Ptag, DateContainer, Task} from "./components";
+import {Button, Checkbox, Input, Ptag, DateContainer, Task, Add} from "./components";
 import getDate from "date-fns/getDate";
 import getISODay from 'date-fns/getISODay';
 import getMonth from 'date-fns/getMonth';
@@ -43,6 +43,7 @@ function App() {
             <DateContainer day={15} weekday={'чт'} month={"Декабрь"} empty={false} active={false}/>
 
             <Task task={'read'}/>
+            <Add/>
         </div>
   );
 }

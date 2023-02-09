@@ -3,10 +3,12 @@
 .input
   border: none
   outline: none
-
+  width: 100%
   font-size: 1.6rem
   &__wrapper
     position: relative
+    width: 100%
+    overflow: hidden
   &::placeholder
     color: $color-black
 
@@ -16,7 +18,7 @@
     border-radius: 2rem 0 0 2rem
     color: $color-black
     box-shadow: 0 .4rem .4rem rgb(0 0 0 / 5%)
-    padding: 1.2rem 1.2rem
+    padding: 1.2rem 0 1.2rem 1.2rem
   &_none
     background: none
     color: $color-blue-dark
