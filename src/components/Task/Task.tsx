@@ -6,7 +6,7 @@ import {Input} from "../Input/Input";
 import {Checkbox} from "../Checkbox/Checkbox";
 
 
-export const Task = ({task, isDone, className, ...props}: TaskProps): JSX.Element => {
+export const Task = ({task, isDone, id, className, ...props}: TaskProps): JSX.Element => {
     return(
         <div className={cn(className, styles.task__container)} {...props}>
             <Button icon={'drag'} appearance={'ghost'}/>

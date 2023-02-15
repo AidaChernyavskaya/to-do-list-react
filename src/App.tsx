@@ -8,9 +8,9 @@ import {inspect} from "util";
 
 
 function App() {
-    const date = new Date();
-    const weekdays = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-    const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+    // const date = new Date();
+    // const weekdays = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+    // const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
     return (
         <div className="app__container">
             <Add className='add'/>
