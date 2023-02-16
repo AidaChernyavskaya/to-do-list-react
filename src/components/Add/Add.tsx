@@ -18,6 +18,16 @@ class Task {
     }
 }
 
+export const getCurrentId = (): string => {
+    let currentId: string | null = localStorage.getItem('currentId');
+    (currentId == null) ? currentId = '1' : currentId = (Number(currentId)+1).toString();
+    return currentId;
+};
+
+export const setValueToStorage = (key: string, value: string): void => {
+    localStorage.setItem(key, value);
+};
+
 export const Add = ({className, ...props}: AddProps): JSX.Element => {
     const [title, setTitle] = useState<string>();
     const handleChange = (event: any): void => {
@@ -27,9 +37,11 @@ export const Add = ({className, ...props}: AddProps): JSX.Element => {
     const onAddTask = (event: any): void => {
         event.preventDefault();
         if (title) {
-            const task = new Task(title, 1, false);
+            const currentId = getCurrentId();
+            const task = new Task(title, Number(currentId), false);
             console.log(task);
             localStorage.setItem("task_" + new Date(), JSON.stringify(task));
+            setValueToStorage('currentId', currentId);
         }
     };
 
