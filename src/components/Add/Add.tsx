@@ -6,6 +6,8 @@ import React, {useEffect, useState} from "react";
 import {Button} from "../Button/Button";
 
 
+const currentDate = new Date();
+
 class Task {
     title: string;
     done: boolean;
@@ -28,6 +30,10 @@ export const setValueToStorage = (key: string, value: string): void => {
     localStorage.setItem(key, value);
 };
 
+export const generateKeyByDate = (date: Date): string => {
+    return `tasks_${date.getDate()}-${(date.getMonth() + 1)}-${date.getFullYear()}`;
+};
+
 export const Add = ({className, ...props}: AddProps): JSX.Element => {
     const [title, setTitle] = useState<string>();
     const handleChange = (event: any): void => {
@@ -40,7 +46,8 @@ export const Add = ({className, ...props}: AddProps): JSX.Element => {
             const currentId = getCurrentId();
             const task = new Task(title, Number(currentId), false);
             console.log(task);
-            localStorage.setItem("task_" + new Date(), JSON.stringify(task));
+            const key = generateKeyByDate(currentDate);
+            localStorage.setItem(key, JSON.stringify(task));
             setValueToStorage('currentId', currentId);
         }
     };
