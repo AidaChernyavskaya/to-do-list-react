@@ -34,6 +34,19 @@ export const generateKeyByDate = (date: Date): string => {
     return `tasks_${date.getDate()}-${(date.getMonth() + 1)}-${date.getFullYear()}`;
 };
 
+export const getJSONFromStorage = (key: string) => {
+    const serialized = localStorage.getItem(key);
+    if (serialized == null){
+        return [];
+    }
+    return JSON.parse(serialized);
+};
+
+export const updateJSONInStorage = (key: string, obj: object):void => {
+    const serialized = JSON.stringify(obj);
+    localStorage.setItem(key, serialized);
+};
+
 export const Add = ({className, ...props}: AddProps): JSX.Element => {
     const [title, setTitle] = useState<string>();
     const handleChange = (event: any): void => {
@@ -47,7 +60,9 @@ export const Add = ({className, ...props}: AddProps): JSX.Element => {
             const task = new Task(title, Number(currentId), false);
             console.log(task);
             const key = generateKeyByDate(currentDate);
-            localStorage.setItem(key, JSON.stringify(task));
+            const tasks = getJSONFromStorage(key);
+            tasks.push(task);
+            updateJSONInStorage(key, tasks);
             setValueToStorage('currentId', currentId);
         }
     };
