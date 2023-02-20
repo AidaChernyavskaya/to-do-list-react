@@ -10,33 +10,25 @@ import {
     setValueToStorage,
     updateJSONInStorage,
     getCurrentId,
-    Task
+    TaskModel
 } from "../../localStorage";
 import {TasksList} from "../TasksList/TasksList";
 
 
 export const currentDate = new Date();
 
-export const Add = ({className, ...props}: AddProps): JSX.Element => {
+export const Add = ({className, addToTasks, ...props}: AddProps): JSX.Element => {
     const [title, setTitle] = useState<string>('');
     const handleChange = (event: any): void => {
         setTitle(event.target.value);
     };
 
-    const onAddTask = (event: any):void => {
-        //добавить в локале стораге
-        //оповестить родителя
+    const onAddTask = (event: any): void => {
         event.preventDefault();
         if (title) {
-            const currentId = getCurrentId();
-            const task = new Task(title, Number(currentId), false);
-            const key = generateKeyByDate(currentDate);
-            const tasks = getJSONFromStorage(key);
-            tasks.push(task);
-            updateJSONInStorage(key, tasks);
-            setValueToStorage('currentId', currentId);
+            addToTasks(title);
+            setTitle('');
         }
-        setTitle('');
     };
 
     return(

@@ -2,7 +2,7 @@ import {TasksListProps} from "./TasksList.props";
 import styles from "./TasksList.module.css";
 import cn from "classnames";
 import React from "react";
-import {generateKeyByDate, getJSONFromStorage} from "../../localStorage";
+import {generateKeyByDate, getJSONFromStorage, TaskModel} from "../../localStorage";
 import {currentDate} from "../Add/Add";
 import {Task} from "../Task/Task";
 
@@ -16,14 +16,11 @@ import {Task} from "../Task/Task";
 //     tasks.forEach((i: number) => showTasks(tasks[i]));
 // };
 
-export const TasksList = ({className, ...props}: TasksListProps): JSX.Element => {
-    const key = generateKeyByDate(currentDate);
-    const tasks = getJSONFromStorage(key);
-
+export const TasksList = ({className, tasks, ...props}: TasksListProps): JSX.Element => {
     return(
         <div className={cn(className, styles.tasks)} {...props}>
-            {tasks.map((el: any) => (
-                <Task className="task" task={el.title} isDone={el.done} id={el.id} key={el.id}/>
+            {tasks.map((el: TaskModel) => (
+                <Task className="task" task={el.title} isDone={el.done} id={(el.id).toString()} key={el.id}/>
             ))}
         </div>
     );

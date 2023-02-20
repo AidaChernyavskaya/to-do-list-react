@@ -1,4 +1,4 @@
-export class Task {
+export class TaskModel {
     title: string;
     done: boolean;
     id: number;
@@ -7,6 +7,14 @@ export class Task {
         this.title = taskTitle;
         this.id = taskId;
         this.done = taskDone;
+    }
+
+    getData(): any{
+       return {
+           title: this.title,
+           id: this.id,
+           done: this.done
+       };
     }
 }
 
@@ -24,7 +32,7 @@ export const generateKeyByDate = (date: Date): string => {
     return `tasks_${date.getDate()}-${(date.getMonth() + 1)}-${date.getFullYear()}`;
 };
 
-export const getJSONFromStorage = (key: string) => {
+export const getJSONFromStorage = (key: string): Array<TaskModel> => {
     const serialized = localStorage.getItem(key);
     if (serialized == null){
         return [];

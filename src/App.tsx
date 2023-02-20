@@ -1,24 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import {Button, Checkbox, Input, Ptag, DateContainer, Task, Add, Calendar, TasksList} from "./components";
-import getDate from "date-fns/getDate";
-import getISODay from 'date-fns/getISODay';
-import getMonth from 'date-fns/getMonth';
-import {inspect} from "util";
+import {Add, Calendar, currentDate, TasksList} from "./components";
+import {
+    generateKeyByDate,
+    getCurrentId,
+    getJSONFromStorage,
+    setValueToStorage,
+    TaskModel,
+    updateJSONInStorage
+} from "./localStorage";
 
 
 function App() {
-    // const date = new Date();
-    // const weekdays = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-    // const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+    const key = generateKeyByDate(currentDate);
+    const [tasks, setTasks] = useState<Array<TaskModel>>(getJSONFromStorage(key));
+    // setTasks([]);
+    const addToTask = (title: string): void => {
+        const currentId = getCurrentId();
+        const task = new TaskModel(title, Number(currentId), false);
+        const key = generateKeyByDate(currentDate);
+        const newTasks = [...tasks, task]; // ??
+        updateJSONInStorage(key, newTasks);
+        setValueToStorage('currentId', currentId);
+        setTasks(newTasks);
+    };
+
     return (
         <div className="app__container">
-            <Add className='add'/>
+            <Add addToTasks={addToTask} className='add'/>
             <Calendar className="calendar"/>
-            {/*<DateContainer day={getDate(date)} weekday={weekdays[getISODay(date)]} month={months[getMonth(date)]} empty={true} active={true}/>*/}
-
-            <TasksList className="tasks_list"/>
-
+            <TasksList tasks={tasks} className="tasks_list"/>
         </div>
     );
 }
