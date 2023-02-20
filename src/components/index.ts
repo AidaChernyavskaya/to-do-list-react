@@ -6,3 +6,4 @@ export * from "./DateContainer/DateContainer";
 export * from "./Task/Task";
 export * from "./Add/Add";
 export * from "./Calendar/Calendar";
+export * from "./TasksList/TasksList";

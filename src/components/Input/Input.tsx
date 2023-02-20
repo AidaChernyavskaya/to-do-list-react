@@ -3,7 +3,7 @@ import styles from "./Input.module.css";
 import cn from "classnames";
 
 
-export const Input = ({error, checked, background, className, ...props}: InputProps): JSX.Element => {
+export const Input = ({error, checked, background, className, value, ...props}: InputProps): JSX.Element => {
     return(
         <div className={cn(className, styles.input__wrapper)}>
             <input className={cn(styles.input, {
@@ -11,7 +11,7 @@ export const Input = ({error, checked, background, className, ...props}: InputPr
                 [styles.background_none]: !background,
                 [styles.checked]: checked,
                 [styles.error]: error
-            })} {...props}/>
+            })} value={value} {...props}/>
             {error && <span className={styles.error__message}>{error.message}</span>}
         </div>
     );
