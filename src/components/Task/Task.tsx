@@ -6,9 +6,10 @@ import {Input} from "../Input/Input";
 import {Checkbox} from "../Checkbox/Checkbox";
 import React, {useEffect, useRef, useState} from "react";
 
-export const Task = ({task, isDone, id, className, ...props}: TaskProps): JSX.Element => {
+
+export const Task = ({taskTitle, isDone, id, className, setTaskTitle, ...props}: TaskProps): JSX.Element => {
     const [editable, setEditable] = useState<boolean>(true);
-    const [title, setTitle] = useState<string>(task);
+    const [title, setTitle] = useState<string>(taskTitle);
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -27,7 +28,10 @@ export const Task = ({task, isDone, id, className, ...props}: TaskProps): JSX.El
 
     const handleKeyPress = (event: any): void => {
         if(event.key === 'Enter'){
-            console.log('enter press here! ');
+            if (title){
+                setTaskTitle(id, title);
+                setEditable(true);
+            } else {console.log('wrong input');}
         }
     };
 

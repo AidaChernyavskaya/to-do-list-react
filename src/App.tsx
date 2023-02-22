@@ -24,11 +24,20 @@ function App() {
         setTasks(newTasks);
     };
 
+    const setTaskTitle = (id: number, newTitle: string): void => {
+        tasks.map(el => {
+            if (el.id == id) {
+                el.title = newTitle;
+            }
+        });
+        updateJSONInStorage(key, tasks);
+    };
+
     return (
         <div className="app__container">
             <Add addToTasks={addToTask} className='add'/>
             <Calendar className="calendar"/>
-            <TasksList tasks={tasks} className="tasks_list"/>
+            <TasksList tasks={tasks} setTaskTitle={setTaskTitle} className="tasks_list"/>
         </div>
     );
 }
