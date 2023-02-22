@@ -5,5 +5,7 @@ export interface InputProps extends DetailedHTMLProps<HTMLAttributes<HTMLInputEl
     error?: FieldError;
     background: boolean;
     checked?: boolean;
-    value: string;
+    value?: string;
+    readonly?: boolean;
+    reference?: any;
 }

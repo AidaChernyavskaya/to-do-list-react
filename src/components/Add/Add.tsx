@@ -32,6 +32,7 @@ export const Add = ({className, addToTasks, ...props}: AddProps): JSX.Element =>
                 placeholder={"Введите задачу"}
                 onChange={handleChange}
                 value={title}
+                readonly={false}
             />
             <Button icon={"plus"} appearance={'gray'} onClick={onAddTask}/>
         </form>
