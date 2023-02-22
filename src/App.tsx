@@ -14,7 +14,6 @@ import {
 function App() {
     const key = generateKeyByDate(currentDate);
     const [tasks, setTasks] = useState<Array<TaskModel>>(getJSONFromStorage(key));
-    // setTasks([]);
     const addToTask = (title: string): void => {
         const currentId = getCurrentId();
         const task = new TaskModel(title, Number(currentId), false);

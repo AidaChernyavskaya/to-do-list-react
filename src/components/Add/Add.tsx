@@ -4,15 +4,6 @@ import cn from "classnames";
 import {Input} from "../Input/Input";
 import React, {useEffect, useState} from "react";
 import {Button} from "../Button/Button";
-import {
-    generateKeyByDate,
-    getJSONFromStorage,
-    setValueToStorage,
-    updateJSONInStorage,
-    getCurrentId,
-    TaskModel
-} from "../../localStorage";
-import {TasksList} from "../TasksList/TasksList";
 
 
 export const currentDate = new Date();
