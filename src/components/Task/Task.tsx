@@ -26,29 +26,63 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, ...props}:
         setTitle(event.target.value);
     };
 
+    const confirmChanges = (): void => {
+        if (title){
+            setTaskTitle(id, title);
+            setEditable(true);
+        } else {console.log('wrong input');}
+    };
+
+    const declineChanges = (): void => {
+        setTitle(taskTitle);
+        setEditable(true);
+        console.log('check');
+    };
+
     const handleKeyPress = (event: any): void => {
         if(event.key === 'Enter'){
-            if (title){
-                setTaskTitle(id, title);
-                setEditable(true);
-            } else {console.log('wrong input');}
+            confirmChanges();
+        }
+        if (event.key === 'Escape'){
+            declineChanges();
         }
     };
 
-    return(
-        <div className={cn(className, styles.task__container)} {...props}>
-            <Button icon={'drag'} appearance={'ghost'}/>
-            <Input
-                background={false}
-                value={title}
-                onChange={handleEdit}
-                readonly={editable}
-                onKeyDown={handleKeyPress}
-                reference={inputRef}
-            />
-            <Button icon={'edit'} appearance={'ghost'} onClick={onEditActivate}/>
-            <Button icon={'del'} appearance={'ghost'}/>
-            <Checkbox/>
-        </div>
-    );
+
+    if (!editable){
+        return (
+            <div className={cn(className, styles.task__container)} {...props}>
+                <Button icon={'drag'} appearance={'ghost'}/>
+                <Input
+                    background={false}
+                    value={title}
+                    onChange={handleEdit}
+                    readonly={editable}
+                    onKeyDown={handleKeyPress}
+                    reference={inputRef}
+                />
+                <Button icon={'tick'} appearance={'ghost'} onClick={confirmChanges}/>
+                <Button icon={'close'} appearance={'ghost'} onClick={declineChanges}/>
+                <Checkbox/>
+            </div>
+        );
+    } else {
+        return(
+            <div className={cn(className, styles.task__container)} {...props}>
+                <Button icon={'drag'} appearance={'ghost'}/>
+                <Input
+                    background={false}
+                    value={title}
+                    onChange={handleEdit}
+                    readonly={editable}
+                    onKeyDown={handleKeyPress}
+                    reference={inputRef}
+                />
+                <Button icon={'edit'} appearance={'ghost'} onClick={onEditActivate}/>
+                <Button icon={'del'} appearance={'ghost'}/>
+                <Checkbox/>
+            </div>
+        );
+    }
+
 };

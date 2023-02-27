@@ -6,6 +6,7 @@ import plus from "./plus.svg";
 import del from "./delete.svg";
 import drag from "./drag.svg";
 import edit from "./edit.svg";
+import tick from "./tick.svg";
 
 export const icons = {
     arrowLeft,
@@ -14,7 +15,8 @@ export const icons = {
     plus,
     del,
     drag,
-    edit
+    edit,
+    tick
 };
 
 export type IconName = keyof typeof icons;
