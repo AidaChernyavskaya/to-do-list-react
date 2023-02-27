@@ -24,6 +24,13 @@ function App() {
         setTasks(newTasks);
     };
 
+    const deleteTask = (id: number): void => {
+        const newTasks = [...tasks];
+        newTasks.splice(newTasks.findIndex((el) => (el.id == id)), 1);
+        setTasks(newTasks);
+        updateJSONInStorage(key, newTasks);
+    };
+
     const setTaskTitle = (id: number, newTitle: string): void => {
         tasks.map(el => {
             if (el.id == id) {
@@ -37,7 +44,7 @@ function App() {
         <div className="app__container">
             <Add addToTasks={addToTask} className='add'/>
             <Calendar className="calendar"/>
-            <TasksList tasks={tasks} setTaskTitle={setTaskTitle} className="tasks_list"/>
+            <TasksList tasks={tasks} setTaskTitle={setTaskTitle} deleteTask={deleteTask} className="tasks_list"/>
         </div>
     );
 }

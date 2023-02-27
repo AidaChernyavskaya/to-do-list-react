@@ -7,7 +7,7 @@ import {Checkbox} from "../Checkbox/Checkbox";
 import React, {useEffect, useRef, useState} from "react";
 
 
-export const Task = ({taskTitle, isDone, id, className, setTaskTitle, ...props}: TaskProps): JSX.Element => {
+export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask, ...props}: TaskProps): JSX.Element => {
     const [editable, setEditable] = useState<boolean>(true);
     const [title, setTitle] = useState<string>(taskTitle);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -36,7 +36,6 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, ...props}:
     const declineChanges = (): void => {
         setTitle(taskTitle);
         setEditable(true);
-        console.log('check');
     };
 
     const handleKeyPress = (event: any): void => {
@@ -48,6 +47,9 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, ...props}:
         }
     };
 
+    const handleDelete = (): void => {
+        deleteTask(id);
+    };
 
     if (!editable){
         return (
@@ -79,7 +81,7 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, ...props}:
                     reference={inputRef}
                 />
                 <Button icon={'edit'} appearance={'ghost'} onClick={onEditActivate}/>
-                <Button icon={'del'} appearance={'ghost'}/>
+                <Button icon={'del'} appearance={'ghost'} onClick={handleDelete}/>
                 <Checkbox/>
             </div>
         );

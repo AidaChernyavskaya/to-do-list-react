@@ -4,4 +4,5 @@ export interface TaskProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivEleme
     taskTitle: string;
     isDone?: boolean;
     setTaskTitle: any;
+    deleteTask: any;
 }
