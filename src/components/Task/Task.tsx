@@ -4,7 +4,7 @@ import cn from "classnames";
 import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
 import {Checkbox} from "../Checkbox/Checkbox";
-import React, {useEffect, useRef, useState} from "react";
+import React, {MouseEventHandler, useEffect, useRef, useState} from "react";
 
 
 export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask, markAsDone, ...props}: TaskProps): JSX.Element => {
@@ -56,42 +56,39 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
         markAsDone(id);
     };
 
+
+    let iconFirst: 'tick' | 'edit';
+    let iconSecond: 'close' | 'del';
+    let onClickFirst: MouseEventHandler<HTMLButtonElement>;
+    let onClickSecond: MouseEventHandler<HTMLButtonElement>;
     if (!editable){
-        return (
-            <div className={cn(className, styles.task__container)} {...props}>
-                <Button icon={'drag'} appearance={'ghost'}/>
-                <Input
-                    background={false}
-                    value={title}
-                    onChange={handleEdit}
-                    readonly={editable}
-                    onKeyDown={handleKeyPress}
-                    reference={inputRef}
-                    checked={isDone}
-                />
-                <Button icon={'tick'} appearance={'ghost'} onClick={confirmChanges}/>
-                <Button icon={'close'} appearance={'ghost'} onClick={declineChanges}/>
-                <Checkbox taskId={id} checked={isDone} onClick={handleMarkAsDone}/>
-            </div>
-        );
+        iconFirst = 'tick';
+        iconSecond = 'close';
+        onClickFirst = confirmChanges;
+        onClickSecond = declineChanges;
     } else {
-        return(
-            <div className={cn(className, styles.task__container)} {...props}>
-                <Button icon={'drag'} appearance={'ghost'}/>
-                <Input
-                    background={false}
-                    value={title}
-                    onChange={handleEdit}
-                    readonly={editable}
-                    onKeyDown={handleKeyPress}
-                    reference={inputRef}
-                    checked={isDone}
-                />
-                <Button icon={'edit'} appearance={'ghost'} onClick={onEditActivate}/>
-                <Button icon={'del'} appearance={'ghost'} onClick={handleDelete}/>
-                <Checkbox taskId={id} checked={isDone} onClick={handleMarkAsDone}/>
-            </div>
-        );
+        iconFirst = 'edit';
+        iconSecond = 'del';
+        onClickFirst = onEditActivate;
+        onClickSecond = handleDelete;
     }
+
+    return (
+        <div className={cn(className, styles.task__container)} {...props}>
+            <Button icon={'drag'} appearance={'ghost'}/>
+            <Input
+                background={false}
+                value={title}
+                onChange={handleEdit}
+                readonly={editable}
+                onKeyDown={handleKeyPress}
+                reference={inputRef}
+                checked={isDone}
+            />
+            <Button icon={iconFirst} appearance={'ghost'} onClick={onClickFirst}/>
+            <Button icon={iconSecond} appearance={'ghost'} onClick={onClickSecond}/>
+            <Checkbox taskId={id} checked={isDone} onClick={handleMarkAsDone}/>
+        </div>
+    );
 
 };
