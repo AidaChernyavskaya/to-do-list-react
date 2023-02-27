@@ -7,7 +7,7 @@ import {Checkbox} from "../Checkbox/Checkbox";
 import React, {useEffect, useRef, useState} from "react";
 
 
-export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask, ...props}: TaskProps): JSX.Element => {
+export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask, markAsDone, ...props}: TaskProps): JSX.Element => {
     const [editable, setEditable] = useState<boolean>(true);
     const [title, setTitle] = useState<string>(taskTitle);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -51,6 +51,11 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
         deleteTask(id);
     };
 
+    const handleMarkAsDone = (): void => {
+        console.log("aab");
+        markAsDone(id);
+    };
+
     if (!editable){
         return (
             <div className={cn(className, styles.task__container)} {...props}>
@@ -62,10 +67,11 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
                     readonly={editable}
                     onKeyDown={handleKeyPress}
                     reference={inputRef}
+                    checked={isDone}
                 />
                 <Button icon={'tick'} appearance={'ghost'} onClick={confirmChanges}/>
                 <Button icon={'close'} appearance={'ghost'} onClick={declineChanges}/>
-                <Checkbox/>
+                <Checkbox taskId={id} checked={isDone} onClick={handleMarkAsDone}/>
             </div>
         );
     } else {
@@ -79,10 +85,11 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
                     readonly={editable}
                     onKeyDown={handleKeyPress}
                     reference={inputRef}
+                    checked={isDone}
                 />
                 <Button icon={'edit'} appearance={'ghost'} onClick={onEditActivate}/>
                 <Button icon={'del'} appearance={'ghost'} onClick={handleDelete}/>
-                <Checkbox/>
+                <Checkbox taskId={id} checked={isDone} onClick={handleMarkAsDone}/>
             </div>
         );
     }

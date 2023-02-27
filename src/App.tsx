@@ -40,11 +40,23 @@ function App() {
         updateJSONInStorage(key, tasks);
     };
 
+    const markAsDone = (id: number): void => {
+        const newTasks = [...tasks];
+        newTasks.map(el => {
+            if (el.id == id) {
+                el.done = !el.done;
+            }
+        });
+        updateJSONInStorage(key, newTasks);
+        setTasks(newTasks);
+        console.log('checkas' + id);
+    };
+
     return (
         <div className="app__container">
             <Add addToTasks={addToTask} className='add'/>
             <Calendar className="calendar"/>
-            <TasksList tasks={tasks} setTaskTitle={setTaskTitle} deleteTask={deleteTask} className="tasks_list"/>
+            <TasksList tasks={tasks} setTaskTitle={setTaskTitle} deleteTask={deleteTask} markAsDone={markAsDone} className="tasks_list"/>
         </div>
     );
 }

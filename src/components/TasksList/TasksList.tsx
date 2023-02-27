@@ -6,13 +6,14 @@ import {TaskModel} from "../../localStorage";
 import {Task} from "../Task/Task";
 
 
-export const TasksList = ({className, tasks, setTaskTitle, deleteTask, ...props}: TasksListProps): JSX.Element => {
+export const TasksList = ({className, tasks, setTaskTitle, deleteTask, markAsDone, ...props}: TasksListProps): JSX.Element => {
     return(
         <div className={cn(className, styles.tasks)} {...props}>
             {tasks.map((el: TaskModel) => (
                 <Task className="task"
                       setTaskTitle={setTaskTitle}
                       deleteTask={deleteTask}
+                      markAsDone={markAsDone}
                       taskTitle={el.title} isDone={el.done} id={(el.id).toString()} key={el.id}/>
             ))}
         </div>
