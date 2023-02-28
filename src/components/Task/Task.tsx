@@ -19,7 +19,9 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
     }, [editable]);
 
     const onEditActivate = (): void => {
-        setEditable(false);
+        if (!isDone) {
+            setEditable(false);
+        }
     };
 
     const handleEdit = (event: any): void => {
@@ -52,7 +54,6 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
     };
 
     const handleMarkAsDone = (): void => {
-        console.log("aab");
         markAsDone(id);
     };
 
