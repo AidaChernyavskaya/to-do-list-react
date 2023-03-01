@@ -4,7 +4,7 @@ import cn from "classnames";
 import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
 import {Checkbox} from "../Checkbox/Checkbox";
-import React, {MouseEventHandler, useEffect, useRef, useState} from "react";
+import React, {ChangeEvent, MouseEventHandler, useEffect, useRef, useState} from "react";
 
 
 export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask, markAsDone, ...props}: TaskProps): JSX.Element => {
@@ -24,7 +24,7 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
         }
     };
 
-    const handleEdit = (event: any): void => {
+    const handleEdit = (event: ChangeEvent<HTMLInputElement>): void => {
         setTitle(event.target.value);
     };
 
@@ -40,7 +40,7 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
         setEditable(true);
     };
 
-    const handleKeyPress = (event: any): void => {
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
         if(event.key === 'Enter'){
             confirmChanges();
         }

@@ -2,19 +2,16 @@ import {AddProps} from "./Add.props";
 import styles from "./Add.module.css";
 import cn from "classnames";
 import {Input} from "../Input/Input";
-import React, {useEffect, useState} from "react";
+import React, {ChangeEvent, FormEvent, useState} from "react";
 import {Button} from "../Button/Button";
-
-
-export const currentDate = new Date();
 
 export const Add = ({className, addToTasks, ...props}: AddProps): JSX.Element => {
     const [title, setTitle] = useState<string>('');
-    const handleChange = (event: any): void => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setTitle(event.target.value);
     };
 
-    const onAddTask = (event: any): void => {
+    const onAddTask = (event: FormEvent): void => {
         event.preventDefault();
         if (title) {
             addToTasks(title);

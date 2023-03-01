@@ -4,10 +4,10 @@ import cn from "classnames";
 import {Button} from "../Button/Button";
 import {DateContainer} from "../DateContainer/DateContainer";
 import React from "react";
-import {currentDate} from "../Add/Add";
 import getDate from "date-fns/getDate";
 import getISODay from 'date-fns/getISODay';
 import getMonth from 'date-fns/getMonth';
+import {currentDate} from "../../App";
 
 export const createDays = (startDate: Date): Array<Date> => {
     const daysArray: Array<Date> = [];

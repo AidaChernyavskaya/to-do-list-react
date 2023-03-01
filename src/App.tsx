@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Add, Calendar, currentDate, TasksList} from "./components";
+import {Add, Calendar,TasksList} from "./components";
 import {
     generateKeyByDate,
     getCurrentId,
@@ -10,6 +10,8 @@ import {
     updateJSONInStorage
 } from "./localStorage";
 
+
+export const currentDate = new Date();
 
 function App() {
     const key = generateKeyByDate(currentDate);
