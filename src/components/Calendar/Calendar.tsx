@@ -3,7 +3,7 @@ import styles from "./Calendar.module.css";
 import cn from "classnames";
 import {Button} from "../Button/Button";
 import {DateContainer} from "../DateContainer/DateContainer";
-import React, {MutableRefObject, useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import getDate from "date-fns/getDate";
 import getISODay from 'date-fns/getISODay';
 import getMonth from 'date-fns/getMonth';
@@ -24,8 +24,13 @@ export const calculateDaysCount = (widthContainer: number): number => {
 };
 
 export const Calendar = ({className, ...props}: CalendarProps): JSX.Element => {
-    const weekdays = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-    const months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+    const WEEKDAYS = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+    const MONTHS = [
+        'Январь', 'Февраль', 'Март',
+        'Апрель', 'Май', 'Июнь',
+        'Июль', 'Август', 'Сентябрь',
+        'Октябрь', 'Ноябрь', 'Декабрь'
+    ];
 
     const [days, setDays] = useState<Array<Date>>([]);
 
@@ -51,8 +56,8 @@ export const Calendar = ({className, ...props}: CalendarProps): JSX.Element => {
                 {days.map((day, index) => (
                     <DateContainer
                         day={getDate(day)}
-                        weekday={weekdays[getISODay(day)-1]}
-                        month={months[getMonth(day)]}
+                        weekday={WEEKDAYS[getISODay(day)-1]}
+                        month={MONTHS[getMonth(day)]}
                         empty={true}
                         active={false}
                         key={index}

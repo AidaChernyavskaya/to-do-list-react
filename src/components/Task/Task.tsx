@@ -30,7 +30,7 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
 
     const confirmChanges = (): void => {
         if (title){
-            setTaskTitle(id, title);
+            setTaskTitle(Number(id), title);
             setEditable(true);
         } else {console.log('wrong input');}
     };
@@ -50,11 +50,11 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
     };
 
     const handleDelete = (): void => {
-        deleteTask(id);
+        deleteTask(Number(id));
     };
 
     const handleMarkAsDone = (): void => {
-        markAsDone(id);
+        markAsDone(Number(id));
     };
 
 

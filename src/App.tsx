@@ -51,7 +51,6 @@ function App() {
         });
         updateJSONInStorage(key, newTasks);
         setTasks(newTasks);
-        console.log('checkas' + id);
     };
 
     return (
