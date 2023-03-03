@@ -7,7 +7,7 @@ import React, {useEffect, useState} from "react";
 import getDate from "date-fns/getDate";
 import getISODay from 'date-fns/getISODay';
 import getMonth from 'date-fns/getMonth';
-import {currentDate} from "../../App";
+import {generateKeyByDate, getJSONFromStorage} from "../../localStorage";
 
 export const createDays = (startDate: Date, daysCount: number): Array<Date> => {
     const daysArray: Array<Date> = [];
@@ -23,7 +23,7 @@ export const calculateDaysCount = (widthContainer: number): number => {
     return Math.floor(widthContainer / WIDTH_DATE_ELEM);
 };
 
-export const Calendar = ({className, ...props}: CalendarProps): JSX.Element => {
+export const Calendar = ({startDate, setStartDate, setTasks, currentDate, setCurrentDate, className, ...props}: CalendarProps): JSX.Element => {
     const WEEKDAYS = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
     const MONTHS = [
         'Январь', 'Февраль', 'Март',
@@ -49,9 +49,36 @@ export const Calendar = ({className, ...props}: CalendarProps): JSX.Element => {
         }
     };
 
+    const setPreviousDate = (): void => {
+        const previous = currentDate;
+        previous.setDate(previous.getDate() - 1);
+        console.log(previous);
+        setCurrentDate(previous);
+        resizeListener();
+        setTasks(getJSONFromStorage(generateKeyByDate(currentDate)));
+    };
+
+    const setNextDate = (): void => {
+        const next = currentDate;
+        next.setDate(next.getDate() + 1);
+        console.log(next);
+        setCurrentDate(next);
+        resizeListener();
+        setTasks(getJSONFromStorage(generateKeyByDate(currentDate)));
+    };
+
+    // const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    //     if(event.key === 'ArrowLeft'){
+    //         setPreviousDate();
+    //     }
+    //     if (event.key === 'ArrowRight'){
+    //         setNextDate();
+    //     }
+    // };
+
     return(
         <div className={cn(className, styles.calendar__container)} {...props}>
-            <Button icon={'arrowLeft'} appearance={'ghost'}/>
+            <Button icon={'arrowLeft'} appearance={'ghost'} onClick={setPreviousDate} />
             <div className={styles.calendar} id={"datesContainer"} >
                 {days.map((day, index) => (
                     <DateContainer
@@ -64,7 +91,7 @@ export const Calendar = ({className, ...props}: CalendarProps): JSX.Element => {
                     />
                 ))}
             </div>
-            <Button icon={'arrowRight'} appearance={'ghost'}/>
+            <Button icon={'arrowRight'} appearance={'ghost'} onClick={setNextDate}/>
         </div>
     );
 };
