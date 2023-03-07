@@ -5,5 +5,4 @@ export interface CalendarProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivE
     startDate: Date;
     setCurrentDate: Dispatch<SetStateAction<Date>>;
     setStartDate: Dispatch<SetStateAction<Date>>;
-    setTasks: any;
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Add, Calendar,TasksList} from "./components";
 import {
@@ -45,7 +45,7 @@ function App() {
         updateJSONInStorage(key, tasks);
     };
 
-    const markAsDone = (id: number): void => {
+    const markAsDone = (id: number): void => { // todo toggleDone
         const newTasks = [...tasks];
         newTasks.map(el => {
             if (el.id == id) {
@@ -56,16 +56,19 @@ function App() {
         setTasks(newTasks);
     };
 
+    useEffect(() => {
+        setTasks(getJSONFromStorage(generateKeyByDate(currentDate)));
+    }, [currentDate]);
+
     return (
         <div className="app__container">
             <Add addToTasks={addToTask} className='add'/>
             <Calendar
                 className="calendar"
                 currentDate={currentDate}
-                startDate={startDate}
                 setCurrentDate={setCurrentDate}
+                startDate={startDate}
                 setStartDate={setStartDate}
-                setTasks={setTasks}
             />
             <TasksList
                 tasks={tasks}

@@ -9,11 +9,14 @@ import getISODay from 'date-fns/getISODay';
 import getMonth from 'date-fns/getMonth';
 import {generateKeyByDate, getJSONFromStorage} from "../../localStorage";
 
+
+const DAY_MILLISECONDS = 24*60*60*1000;
+
 export const createDays = (startDate: Date, daysCount: number): Array<Date> => {
+
     const daysArray: Array<Date> = [];
     for (let i = 0; i < daysCount; i++){
-        daysArray[i] = new Date();
-        daysArray[i].setDate(startDate.getDate() + i);
+        daysArray[i] = new Date(startDate.getTime() + i * DAY_MILLISECONDS);
     }
     return daysArray;
 };
@@ -23,7 +26,7 @@ export const calculateDaysCount = (widthContainer: number): number => {
     return Math.floor(widthContainer / WIDTH_DATE_ELEM);
 };
 
-export const Calendar = ({startDate, setStartDate, setTasks, currentDate, setCurrentDate, className, ...props}: CalendarProps): JSX.Element => {
+export const Calendar = ({startDate, setStartDate, currentDate, setCurrentDate, className, ...props}: CalendarProps): JSX.Element => {
     const WEEKDAYS = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
     const MONTHS = [
         'Январь', 'Февраль', 'Март',
@@ -33,6 +36,7 @@ export const Calendar = ({startDate, setStartDate, setTasks, currentDate, setCur
     ];
 
     const [days, setDays] = useState<Array<Date>>([]);
+    const [daysCount, setDaysCount] = useState<number>(0);
 
     useEffect(() => {
         const datesContainerElem = document.getElementById("datesContainer");
@@ -41,30 +45,27 @@ export const Calendar = ({startDate, setStartDate, setTasks, currentDate, setCur
         }
     }, []);
 
+    useEffect(() => {
+        setDays(createDays(startDate, daysCount));
+    }, [daysCount, startDate]);
+
     const resizeListener = (): void => {
         const datesContainerElem = document.getElementById("datesContainer");
         if (datesContainerElem){
-            const daysCount = calculateDaysCount(datesContainerElem.offsetWidth);
-            setDays(createDays(currentDate, daysCount));
+            setDaysCount(calculateDaysCount(datesContainerElem.offsetWidth));
         }
     };
 
     const setPreviousDate = (): void => {
-        const previous = currentDate;
-        previous.setDate(previous.getDate() - 1);
-        console.log(previous);
-        setCurrentDate(previous);
-        resizeListener();
-        setTasks(getJSONFromStorage(generateKeyByDate(currentDate)));
+        changeStartDate(-1);
     };
 
     const setNextDate = (): void => {
-        const next = currentDate;
-        next.setDate(next.getDate() + 1);
-        console.log(next);
-        setCurrentDate(next);
-        resizeListener();
-        setTasks(getJSONFromStorage(generateKeyByDate(currentDate)));
+        changeStartDate(1);
+    };
+
+    const changeStartDate = (delta: number): void => {
+        setStartDate(new Date(startDate.getTime() + delta * DAY_MILLISECONDS));
     };
 
     // const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
@@ -82,6 +83,10 @@ export const Calendar = ({startDate, setStartDate, setTasks, currentDate, setCur
         return dateFirst.getTime() === dateSecond.getTime();
     };
 
+    const changeCurrentDate = (day: Date): void => {
+        setCurrentDate(day);
+    };
+
     return(
         <div className={cn(className, styles.calendar__container)} {...props}>
             <Button icon={'arrowLeft'} appearance={'ghost'} onClick={setPreviousDate} />
@@ -94,6 +99,7 @@ export const Calendar = ({startDate, setStartDate, setTasks, currentDate, setCur
                         empty={getJSONFromStorage(generateKeyByDate(day)).length == 0}
                         active={isActive(day)}
                         key={index}
+                        onClick={(): void => {changeCurrentDate(day);}}
                     />
                 ))}
             </div>
