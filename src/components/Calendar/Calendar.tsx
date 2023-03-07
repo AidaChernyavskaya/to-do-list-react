@@ -76,6 +76,12 @@ export const Calendar = ({startDate, setStartDate, setTasks, currentDate, setCur
     //     }
     // };
 
+    const isActive = (day: Date): boolean => {
+        const dateFirst: Date = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+        const dateSecond: Date = new Date(day.getFullYear(), day.getMonth(), day.getDate());
+        return dateFirst.getTime() === dateSecond.getTime();
+    };
+
     return(
         <div className={cn(className, styles.calendar__container)} {...props}>
             <Button icon={'arrowLeft'} appearance={'ghost'} onClick={setPreviousDate} />
@@ -85,8 +91,8 @@ export const Calendar = ({startDate, setStartDate, setTasks, currentDate, setCur
                         day={getDate(day)}
                         weekday={WEEKDAYS[getISODay(day)-1]}
                         month={MONTHS[getMonth(day)]}
-                        empty={true}
-                        active={false}
+                        empty={getJSONFromStorage(generateKeyByDate(day)).length == 0}
+                        active={isActive(day)}
                         key={index}
                     />
                 ))}
