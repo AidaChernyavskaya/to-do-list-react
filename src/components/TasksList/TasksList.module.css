@@ -1,3 +1,7 @@
-
+.selected {
+  opacity: 0.6;
+  background-color: #e1e7e9;
+  border-radius: 0.2rem;
+}
 
 /*# sourceMappingURL=TasksList.module.css.map */

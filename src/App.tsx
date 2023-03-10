@@ -56,6 +56,11 @@ function App() {
         setTasks(newTasks);
     };
 
+    const updateTasks = (newTasks: Array<TaskModel>): void => {
+        setTasks(newTasks);
+        updateJSONInStorage(generateKeyByDate(currentDate), newTasks);
+    };
+
     useEffect(() => {
         setTasks(getJSONFromStorage(generateKeyByDate(currentDate)));
     }, [currentDate]);
@@ -76,6 +81,7 @@ function App() {
                 deleteTask={deleteTask}
                 markAsDone={markAsDone}
                 className="tasks_list"
+                updateTasks={updateTasks}
             />
         </div>
     );
