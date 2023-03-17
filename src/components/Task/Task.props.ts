@@ -5,5 +5,5 @@ export interface TaskProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivEleme
     isDone: boolean;
     setTaskTitle: (id: number, newTitle: string)=>void;
     deleteTask: (id: number)=>void;
-    markAsDone: (id: number)=>void;
+    toggleDone: (id: number)=>void;
 }

@@ -9,6 +9,7 @@ export const Add = ({className, addToTasks, ...props}: AddProps): JSX.Element =>
     const [title, setTitle] = useState<string>('');
     const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setTitle(event.target.value);
+        // setEditableAdd(true);
     };
 
     const onAddTask = (event: FormEvent): void => {
@@ -16,6 +17,7 @@ export const Add = ({className, addToTasks, ...props}: AddProps): JSX.Element =>
         if (title) {
             addToTasks(title);
             setTitle('');
+            // setEditableAdd(false);
         }
     };
 

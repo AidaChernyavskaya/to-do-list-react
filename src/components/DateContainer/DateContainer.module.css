@@ -8,13 +8,10 @@
   position: relative;
   cursor: pointer;
 }
-.date p {
-  color: #6495ed;
-}
-.date:hover {
+.date p:hover {
   transform: translateY(-0.2rem);
 }
-.date:hover p {
+.date p:hover p {
   color: #25497b;
 }
 
@@ -30,7 +27,7 @@
 }
 
 .active {
-  border: 0.2rem solid #25497b;
+  border: 0.3rem solid #25497b;
 }
 .active p {
   color: #25497b;
@@ -38,6 +35,12 @@
 
 .day {
   font-weight: bold;
+  color: #547ec8;
+}
+
+.weekday, .month {
+  font-size: 1.5rem;
+  color: #547ec8;
 }
 
 /*# sourceMappingURL=DateContainer.module.css.map */

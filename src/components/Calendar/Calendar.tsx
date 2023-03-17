@@ -3,14 +3,14 @@ import styles from "./Calendar.module.css";
 import cn from "classnames";
 import {Button} from "../Button/Button";
 import {DateContainer} from "../DateContainer/DateContainer";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import getDate from "date-fns/getDate";
 import getISODay from 'date-fns/getISODay';
 import getMonth from 'date-fns/getMonth';
 import {generateKeyByDate, getJSONFromStorage} from "../../localStorage";
 
 
-const DAY_MILLISECONDS = 24*60*60*1000;
+export const DAY_MILLISECONDS = 24*60*60*1000;
 
 export const createDays = (startDate: Date, daysCount: number): Array<Date> => {
 
@@ -37,6 +37,7 @@ export const Calendar = ({startDate, setStartDate, currentDate, setCurrentDate, 
 
     const [days, setDays] = useState<Array<Date>>([]);
     const [daysCount, setDaysCount] = useState<number>(0);
+    // const [loaded, setLoaded] = useState<boolean>(false);
 
     useEffect(() => {
         const datesContainerElem = document.getElementById("datesContainer");
@@ -56,19 +57,22 @@ export const Calendar = ({startDate, setStartDate, currentDate, setCurrentDate, 
         }
     };
 
-    const setPreviousDate = (): void => {
-        changeStartDate(-1);
-    };
-
-    const setNextDate = (): void => {
-        changeStartDate(1);
-    };
-
     const changeStartDate = (delta: number): void => {
         setStartDate(new Date(startDate.getTime() + delta * DAY_MILLISECONDS));
     };
 
-    // const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    const setPreviousDate = (): void => {
+        changeStartDate(-1);
+        // setLoaded(false);
+    };
+
+    const setNextDate = (): void => {
+        changeStartDate(1);
+        // setLoaded(false);
+    };
+
+
+    // const handleKeyPress = (event: React.KeyboardEvent<HTMLButtonElement>): void => {
     //     if(event.key === 'ArrowLeft'){
     //         setPreviousDate();
     //     }
@@ -76,6 +80,22 @@ export const Calendar = ({startDate, setStartDate, currentDate, setCurrentDate, 
     //         setNextDate();
     //     }
     // };
+
+    // useEffect( () => {
+    //     if (loaded) {
+    //         console.log('here');
+    //         return;
+    //     }
+    //     document.addEventListener('keydown', function (event){
+    //         if(event.key === 'ArrowLeft'){
+    //             setPreviousDate();
+    //         }
+    //         if (event.key === 'ArrowRight'){
+    //             setNextDate();
+    //         }
+    //     });
+    //     setLoaded(true);
+    // }, [setPreviousDate, setNextDate, loaded]);
 
     const isActive = (day: Date): boolean => {
         const dateFirst: Date = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
@@ -87,10 +107,13 @@ export const Calendar = ({startDate, setStartDate, currentDate, setCurrentDate, 
         setCurrentDate(day);
     };
 
+    // const btn = document.getElementById('btn');onKeyDown={handleKeyPress}
+    // btn && btn.focus();
+
     return(
         <div className={cn(className, styles.calendar__container)} {...props}>
-            <Button icon={'arrowLeft'} appearance={'ghost'} onClick={setPreviousDate} />
-            <div className={styles.calendar} id={"datesContainer"} >
+            <Button icon={'arrowLeft'} appearance={'ghost'} onClick={setPreviousDate}/>
+            <div className={styles.calendar} id={"datesContainer"}>
                 {days.map((day, index) => (
                     <DateContainer
                         day={getDate(day)}
@@ -103,7 +126,7 @@ export const Calendar = ({startDate, setStartDate, currentDate, setCurrentDate, 
                     />
                 ))}
             </div>
-            <Button icon={'arrowRight'} appearance={'ghost'} onClick={setNextDate}/>
+            <Button icon={'arrowRight'} appearance={'ghost'} onClick={setNextDate} />
         </div>
     );
 };

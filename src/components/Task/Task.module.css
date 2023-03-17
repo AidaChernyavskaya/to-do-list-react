@@ -1,6 +1,6 @@
 .task__container {
   display: grid;
-  grid-template-columns: 2.4rem minmax(20rem, 1fr) 2.4rem 2.4rem 2.4rem;
+  grid-template-columns: 2.8rem minmax(20rem, 1fr) 2.8rem 2.8rem 2.8rem;
   align-items: center;
   gap: 0.6rem;
 }

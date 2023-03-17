@@ -5,6 +5,6 @@ export interface TasksListProps extends DetailedHTMLProps<HTMLAttributes<HTMLDiv
     tasks: Array<TaskModel>;
     setTaskTitle: (id: number, newTitle: string)=>void;
     deleteTask: (id: number)=>void;
-    markAsDone: (id: number)=>void;
+    toggleDone: (id: number)=>void;
     updateTasks: (newTasks: Array<TaskModel>)=>void;
 }

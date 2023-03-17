@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {Add, Calendar,TasksList} from "./components";
+import {Add, Calendar, TasksList} from "./components";
 import {
     generateKeyByDate,
     getCurrentId,
@@ -11,7 +11,6 @@ import {
 } from "./localStorage";
 
 
-export const currentDate = new Date();
 
 function App() {
     const [currentDate, setCurrentDate] = useState<Date>(new Date());
@@ -19,7 +18,7 @@ function App() {
     const key = generateKeyByDate(currentDate);
     const [tasks, setTasks] = useState<Array<TaskModel>>(getJSONFromStorage(key));
 
-    const addToTask = (title: string): void => {
+    const addToTasks = (title: string): void => { 
         const currentId = getCurrentId();
         const task = new TaskModel(title, Number(currentId), false);
         const key = generateKeyByDate(currentDate);
@@ -45,7 +44,7 @@ function App() {
         updateJSONInStorage(key, tasks);
     };
 
-    const markAsDone = (id: number): void => { // todo toggleDone
+    const toggleDone = (id: number): void => {
         const newTasks = [...tasks];
         newTasks.map(el => {
             if (el.id == id) {
@@ -65,9 +64,21 @@ function App() {
         setTasks(getJSONFromStorage(generateKeyByDate(currentDate)));
     }, [currentDate]);
 
+    // const btn = document.getElementById('btn');
+    // btn && btn.focus();
+
+    // const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    //     if(event.key === 'ArrowLeft'){
+    //         setStartDate(new Date(startDate.getTime() - DAY_MILLISECONDS));
+    //     }
+    //     if (event.key === 'ArrowRight'){
+    //         setStartDate(new Date(startDate.getTime() + DAY_MILLISECONDS));
+    //     }
+    // };
+
     return (
         <div className="app__container">
-            <Add addToTasks={addToTask} className='add'/>
+            <Add addToTasks={addToTasks} className='add'/>
             <Calendar
                 className="calendar"
                 currentDate={currentDate}
@@ -79,7 +90,7 @@ function App() {
                 tasks={tasks}
                 setTaskTitle={setTaskTitle}
                 deleteTask={deleteTask}
-                markAsDone={markAsDone}
+                toggleDone={toggleDone}
                 className="tasks_list"
                 updateTasks={updateTasks}
             />

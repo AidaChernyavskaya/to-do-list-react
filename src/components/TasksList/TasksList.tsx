@@ -6,13 +6,12 @@ import {TaskModel} from "../../localStorage";
 import {Task} from "../Task/Task";
 
 
-export const TasksList = ({className, tasks, updateTasks, setTaskTitle, deleteTask, markAsDone, ...props}: TasksListProps): JSX.Element => {
+export const TasksList = ({className, tasks, updateTasks, setTaskTitle, deleteTask, toggleDone, ...props}: TasksListProps): JSX.Element => {
     const [idNumber, setIDNumber] = useState<number>(0);
     const dragItem = useRef<number>(0);
     const dragOverItem = useRef<number>(0);
 
     const handleDragStart = (event: React.DragEvent<HTMLDivElement>, id: number, index: number): void => {
-        console.log('work' + event.clientY + '   ' + id);
         setIDNumber(id);
         dragItem.current = index;
     };
@@ -23,7 +22,6 @@ export const TasksList = ({className, tasks, updateTasks, setTaskTitle, deleteTa
     };
 
     const handleDragEnd = (event: React.DragEvent<HTMLDivElement>): void => {
-        console.log('drop' + event.clientY);
         setIDNumber(0);
         const copyTasks = [...tasks];
         const dragItemContent = copyTasks[dragItem.current];
@@ -31,7 +29,6 @@ export const TasksList = ({className, tasks, updateTasks, setTaskTitle, deleteTa
         copyTasks.splice(dragOverItem.current, 0, dragItemContent);
         dragItem.current = 0;
         dragOverItem.current = 0;
-        console.log(copyTasks);
         updateTasks(copyTasks);
     };
 
@@ -41,7 +38,7 @@ export const TasksList = ({className, tasks, updateTasks, setTaskTitle, deleteTa
                 <Task className={cn("task", idNumber == el.id ? styles.selected : '')}
                       setTaskTitle={setTaskTitle}
                       deleteTask={deleteTask}
-                      markAsDone={markAsDone}
+                      toggleDone={toggleDone}
                       taskTitle={el.title}
                       isDone={el.done}
                       id={(el.id).toString()}

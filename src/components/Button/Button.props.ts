@@ -19,6 +19,17 @@ export const icons = {
     tick
 };
 
+export const labelNames = {
+    arrowLeft: 'previous day',
+    arrowRight: 'next day',
+    close: 'do not save changes',
+    plus: 'add new task',
+    del: 'delete task',
+    drag: 'drag and drop for a task',
+    edit: 'edit task',
+    tick: 'save changes'
+};
+
 export type IconName = keyof typeof icons;
 
 export interface ButtonProps extends DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement>{

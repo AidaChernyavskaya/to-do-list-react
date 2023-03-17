@@ -9,9 +9,7 @@
   transition: all .3s ease
   position: relative
   cursor: pointer
-  p
-    color: #6495ed
-  &:hover
+  p:hover
     transform: translateY(-.2rem)
     p
       color: $color-blue-dark
@@ -27,9 +25,15 @@
   right: .5rem
 
 .active
-  border: .2rem solid $color-blue-dark
+  border: .3rem solid $color-blue-dark
   p
     color: $color-blue-dark
 
 .day
   font-weight: bold
+  color: #547ec8
+
+.weekday, .month
+  font-size: 1.5rem
+  color: #547ec8
+  //color: #4669a7

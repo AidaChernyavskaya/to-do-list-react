@@ -7,7 +7,7 @@ import {Checkbox} from "../Checkbox/Checkbox";
 import React, {ChangeEvent, MouseEventHandler, useEffect, useRef, useState} from "react";
 
 
-export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask, markAsDone, ...props}: TaskProps): JSX.Element => {
+export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask, toggleDone, ...props}: TaskProps): JSX.Element => {
     const [editable, setEditable] = useState<boolean>(true);
     const [title, setTitle] = useState<string>(taskTitle);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -17,6 +17,15 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
             inputRef.current.focus();
         }
     }, [editable]);
+
+    useEffect(() => {
+        const editIcon = document.getElementById('editIcon');
+        if (isDone){
+            if(editIcon) {editIcon.style.cursor = 'not-allowed';}
+        } else {
+            if(editIcon) {editIcon.style.cursor = 'pointer';}
+        }
+    }, [isDone]);
 
     const onEditActivate = (): void => {
         if (!isDone) {
@@ -53,8 +62,8 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
         deleteTask(Number(id));
     };
 
-    const handleMarkAsDone = (): void => {
-        markAsDone(Number(id));
+    const handletoggleDone = (): void => {
+        toggleDone(Number(id));
     };
 
 
@@ -86,9 +95,9 @@ export const Task = ({taskTitle, isDone, id, className, setTaskTitle, deleteTask
                 reference={inputRef}
                 checked={isDone}
             />
-            <Button icon={iconFirst} appearance={'ghost'} onClick={onClickFirst}/>
+            <Button icon={iconFirst} appearance={'ghost'} onClick={onClickFirst} id={'editIcon'}/>
             <Button icon={iconSecond} appearance={'ghost'} onClick={onClickSecond}/>
-            <Checkbox taskId={id} checked={isDone} onClick={handleMarkAsDone}/>
+            <Checkbox taskId={id} checked={isDone} onClick={handletoggleDone}/>
         </div>
     );
 
