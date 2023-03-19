@@ -64,18 +64,6 @@ function App() {
         setTasks(getJSONFromStorage(generateKeyByDate(currentDate)));
     }, [currentDate]);
 
-    // const btn = document.getElementById('btn');
-    // btn && btn.focus();
-
-    // const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>): void => {
-    //     if(event.key === 'ArrowLeft'){
-    //         setStartDate(new Date(startDate.getTime() - DAY_MILLISECONDS));
-    //     }
-    //     if (event.key === 'ArrowRight'){
-    //         setStartDate(new Date(startDate.getTime() + DAY_MILLISECONDS));
-    //     }
-    // };
-
     return (
         <div className="app__container">
             <Add addToTasks={addToTasks} className='add'/>
