@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/to-do-list-react/static/css/main.6a79283f.css",
+    "main.js": "/to-do-list-react/static/js/main.d67417ac.js",
+    "static/js/787.d1b892bc.chunk.js": "/to-do-list-react/static/js/787.d1b892bc.chunk.js",
+    "static/media/edit.svg": "/to-do-list-react/static/media/edit.18aa3145d46933126ffaf0d722338f04.svg",
+    "static/media/close.svg": "/to-do-list-react/static/media/close.2791559aacff61e43e9830e6e86fe5c2.svg",
+    "index.html": "/to-do-list-react/index.html",
+    "static/media/plus.svg": "/to-do-list-react/static/media/plus.126a70294b62c0ab7d02be80ef5798fb.svg",
+    "static/media/arrowLeft.svg": "/to-do-list-react/static/media/arrowLeft.9c2324a2360b0364d82b2c493c4ea5d5.svg",
+    "static/media/arrowRight.svg": "/to-do-list-react/static/media/arrowRight.b56e7e9e696cf3fa476bbc5ecd25e831.svg",
+    "static/media/delete.svg": "/to-do-list-react/static/media/delete.cde6b83d17f2faa7baf75ad564f6cb73.svg",
+    "static/media/tick.svg": "/to-do-list-react/static/media/tick.70ceccdb6acd895af9f9d96544682a0d.svg",
+    "static/media/drag.svg": "/to-do-list-react/static/media/drag.bd9137e29f540e1e65b00921ffe4b61c.svg",
+    "main.6a79283f.css.map": "/to-do-list-react/static/css/main.6a79283f.css.map",
+    "main.d67417ac.js.map": "/to-do-list-react/static/js/main.d67417ac.js.map",
+    "787.d1b892bc.chunk.js.map": "/to-do-list-react/static/js/787.d1b892bc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6a79283f.css",
+    "static/js/main.d67417ac.js"
+  ]
+}
